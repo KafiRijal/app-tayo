@@ -29,12 +29,24 @@ Route::get('dashboard', function () {
 Route::get('dashboard/lacak', function () {
     return view('/admin/pages/lacak');
 });
+Route::get('dashboard/lacak/form_lacak', function () {
+    return view('/admin/pages/form_lacak');
+});
 Route::get('dashboard/jadwal', function () {
     return view('/admin/pages/jadwal');
+});
+Route::get('dashboard/jadwal/form_jadwal', function () {
+    return view('/admin/pages/form_jadwal');
 });
 Route::get('dashboard/informasi', function () {
     return view('/admin/pages/informasi');
 });
+Route::get('dashboard/informasi/form_info', function () {
+    return view('/admin/pages/form_info');
+});
 Route::get('dashboard/materi', function () {
     return view('/admin/pages/materi');
+});
+Route::get('dashboard/materi/form_materi', function () {
+    return view('/admin/pages/form_materi');
 });

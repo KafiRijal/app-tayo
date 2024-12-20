@@ -4,7 +4,16 @@
     <div class="content-wrapper">
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
-            <h4 class="fw-bold py-3 mb-4">Lacak & Daftar TA</h4>
+            <div class="row">
+                <div class="col-10">
+                    <h4 class="fw-bold py-3 mb-4">Lacak & Daftar TA</h4>
+                </div>
+                <div class="col-2 py-2">
+                    <a href="{{ url('dashboard/lacak/form_lacak') }}" type="button" class="btn btn-primary">
+                        <span class="tf-icons bx bx-plus"></span>&nbsp; Tambah
+                    </a>
+                </div>
+            </div>
             <div class="card mb-4">
                 <h5 class="card-header">Bar Kemajuan</h5>
                 <div class="card-body">
@@ -46,10 +55,10 @@
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="javascript:void(0);"><i
                                                     class="bx bx-edit-alt me-2"></i>
-                                                Edit</a>
+                                                Ubah</a>
                                             <a class="dropdown-item" href="javascript:void(0);"><i
                                                     class="bx bx-trash me-2"></i>
-                                                Delete</a>
+                                                Hapus</a>
                                         </div>
                                     </div>
                                 </td>
@@ -70,10 +79,10 @@
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="javascript:void(0);"><i
                                                     class="bx bx-edit-alt me-2"></i>
-                                                Edit</a>
+                                                Ubah</a>
                                             <a class="dropdown-item" href="javascript:void(0);"><i
                                                     class="bx bx-trash me-2"></i>
-                                                Delete</a>
+                                                Hapus</a>
                                         </div>
                                     </div>
                                 </td>
@@ -94,10 +103,10 @@
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="javascript:void(0);"><i
                                                     class="bx bx-edit-alt me-2"></i>
-                                                Edit</a>
+                                                Ubah</a>
                                             <a class="dropdown-item" href="javascript:void(0);"><i
                                                     class="bx bx-trash me-2"></i>
-                                                Delete</a>
+                                                Hapus</a>
                                         </div>
                                     </div>
                                 </td>
@@ -118,10 +127,10 @@
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="javascript:void(0);"><i
                                                     class="bx bx-edit-alt me-2"></i>
-                                                Edit</a>
+                                                Ubah</a>
                                             <a class="dropdown-item" href="javascript:void(0);"><i
                                                     class="bx bx-trash me-2"></i>
-                                                Delete</a>
+                                                Hapus</a>
                                         </div>
                                     </div>
                                 </td>
@@ -142,10 +151,10 @@
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="javascript:void(0);"><i
                                                     class="bx bx-edit-alt me-2"></i>
-                                                Edit</a>
+                                                Ubah</a>
                                             <a class="dropdown-item" href="javascript:void(0);"><i
                                                     class="bx bx-trash me-2"></i>
-                                                Delete</a>
+                                                Hapus</a>
                                         </div>
                                     </div>
                                 </td>
