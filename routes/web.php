@@ -50,3 +50,9 @@ Route::get('dashboard/materi', function () {
 Route::get('dashboard/materi/form_materi', function () {
     return view('/admin/pages/form_materi');
 });
+Route::get('dashboard/kelola', function () {
+    return view('/admin/pages/kelola');
+});
+Route::get('dashboard/kelola/form_kelola', function () {
+    return view('/admin/pages/form_kelola');
+});

@@ -7,32 +7,26 @@
             <div class="col-xxl">
                 <div class="card mb-4">
                     <div class="card-header d-flex align-items-center justify-content-between">
-                        <h5 class="mb-0">Tambah/Update Materi Bimbingan TA</h5>
+                        <h5 class="mb-0">Tambah/Update Hak Akses</h5>
                     </div>
                     <div class="card-body">
                         <form>
                             <div class="mb-3 row">
-                                <label for="html5-text-input" class="col-md-2 col-form-label">Topik Bimbingan</label>
+                                <label for="html5-text-input" class="col-md-2 col-form-label">Nama Pengguna</label>
                                 <div class="col-md-10">
                                     <input class="form-control" type="text" value="" id="html5-text-input" />
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="exampleFormControlTextarea1" class="col-md-2 col-form-label">Deskripsi</label>
+                                <label for="html5-email-input" class="col-md-2 col-form-label">Email</label>
                                 <div class="col-md-10">
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    <input class="form-control" type="email" value="" id="html5-email-input" />
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="formFile" class="col-md-2 col-form-label">Unggah File Materi</label>
+                                <label for="html5-text-input" class="col-md-2 col-form-label">Role</label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="file" id="formFile" />
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label for="formFile" class="col-md-2 col-form-label">Unggah Video Materi</label>
-                                <div class="col-md-10">
-                                    <input class="form-control" type="file" id="formFile" />
+                                    <input class="form-control" type="text" value="" id="html5-text-input" />
                                 </div>
                             </div>
                             <div class="row justify-content-end">

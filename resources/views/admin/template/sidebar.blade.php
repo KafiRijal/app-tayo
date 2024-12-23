@@ -48,6 +48,12 @@
                             <div data-i18n="Form Layouts">Materi</div>
                         </a>
                     </li>
+                    <li class="menu-item">
+                        <a href="{{ url('dashboard/kelola') }}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bxs-user-detail"></i>
+                            <div data-i18n="Form Layouts">Kelola Akses</div>
+                        </a>
+                    </li>
                 </ul>
             </aside>
             <!-- / Menu -->
