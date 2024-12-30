@@ -59,7 +59,7 @@
                         </li>
                     </ul>
 
-                    <a href="{{ url('login') }}" class="btn custom-btn d-lg-block d-none">Masuk</a>
+                    <a href="{{ url('auth/login') }}" class="btn custom-btn d-lg-block d-none">Masuk</a>
                 </div>
             </div>
         </nav>

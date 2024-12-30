@@ -10,6 +10,7 @@
     <title>TAyo</title>
 
     <meta name="description" content="" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @include('admin/template/styles')
 </head>
 
@@ -28,6 +29,7 @@
         </div>
     </div>
     @include('admin/template/scripts')
+    @yield('template_scripts')
 </body>
 
 </html>

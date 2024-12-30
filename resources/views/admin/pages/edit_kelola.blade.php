@@ -7,7 +7,7 @@
             <div class="col-xxl">
                 <div class="card mb-4">
                     <div class="card-header d-flex align-items-center justify-content-between">
-                        <h5 class="mb-0">Tambah Hak Akses</h5>
+                        <h5 class="mb-0">Update Hak Akses</h5>
                     </div>
 
                     @if ($errors->any())
@@ -21,19 +21,20 @@
                     @endif
 
                     <div class="card-body">
-                        <form action="{{ url('/usermanagement/_tambah') }}" method="POST">
+                        <form action="{{ url('/usermanagement/_edit') }}" method="POST">
                             @csrf
+                            <input type="hidden" name="id" value="{{ $user->id }}">
                             <div class="mb-3 row">
                                 <label for="html5-text-input" class="col-md-2 col-form-label">Nama Pengguna</label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="text" name="name" value=""
+                                    <input class="form-control" type="text" name="name" value="{{ $user->name }}"
                                         id="html5-text-input" />
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="html5-email-input" class="col-md-2 col-form-label">Email</label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="email" name="email" value=""
+                                    <input class="form-control" type="email" name="email" value="{{ $user->email }}"
                                         id="html5-email-input" />
                                 </div>
                             </div>
@@ -83,7 +84,7 @@
                         provinceSelect.empty();
                         provinceSelect.append('<option selected>Pilih Role</option>');
                         $.each(data, function(key, value) {
-                            let selected = (value.id == "{{ old('role') }}") ?
+                            let selected = (value.id == "{{ $user->role_id }}") ?
                                 'selected' : '';
                             provinceSelect.append('<option value="' + value.id + '" ' +
                                 selected + '>' + value.role + '</option>');
