@@ -25,7 +25,7 @@
                     <li class="menu-header small text-uppercase"><span class="menu-header-text">Menu</span></li>
                     <!-- Forms -->
                     <li class="menu-item">
-                        <a href="{{ url('dashboard/lacak') }}" class="menu-link">
+                        <a href="{{ url('lacak/list_lacak') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-list-check"></i>
                             <div data-i18n="Form Elements">Lacak & Daftar TA</div>
                         </a>
@@ -43,7 +43,7 @@
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="{{ url('dashboard/materi') }}" class="menu-link">
+                        <a href="{{ url('materi/list_materi') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-book"></i>
                             <div data-i18n="Form Layouts">Materi</div>
                         </a>

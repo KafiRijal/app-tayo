@@ -4,6 +4,8 @@ use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\InformasiController;
+use App\Http\Controllers\LacakController;
+use App\Http\Controllers\MateriController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('usermanagement')->group(function () {
@@ -40,6 +42,28 @@ Route::prefix('informasi')->group(function () {
     Route::post('_edit_info', [InformasiController::class, '_edit_info'])->name('_edit_info');
 
     Route::delete('_delete_info/{id}', [InformasiController::class, '_delete_info'])->name('_delete_info');
+});
+Route::prefix('materi')->group(function () {
+    Route::get('list_materi', [MateriController::class, 'list_materi'])->name('list_materi');
+    Route::get('tambah_materi', [MateriController::class, 'tambah_materi'])->name('tambah_materi');
+    Route::get('edit_materi/{id}', [MateriController::class, 'edit_materi'])->name('edit_materi');
+
+    Route::post('_list_materi', [MateriController::class, '_list_materi'])->name('_list_materi');
+    Route::post('_tambah_materi', [MateriController::class, '_tambah_materi'])->name('_tambah_materi');
+    Route::post('_edit_materi', [MateriController::class, '_edit_materi'])->name('_edit_materi');
+
+    Route::delete('_delete_materi/{id}', [MateriController::class, '_delete_materi'])->name('_delete_materi');
+});
+Route::prefix('lacak')->group(function () {
+    Route::get('list_lacak', [LacakController::class, 'list_lacak'])->name('list_lacak');
+    Route::get('tambah_lacak', [LacakController::class, 'tambah_lacak'])->name('tambah_lacak');
+    Route::get('edit_lacak/{id}', [LacakController::class, 'edit_lacak'])->name('edit_lacak');
+
+    Route::post('_list_lacak', [LacakController::class, '_list_lacak'])->name('_list_lacak');
+    Route::post('_tambah_lacak', [LacakController::class, '_tambah_lacak'])->name('_tambah_lacak');
+    Route::post('_edit_lacak', [LacakController::class, '_edit_lacak'])->name('_edit_lacak');
+
+    Route::delete('_delete_lacak/{id}', [LacakController::class, '_delete_lacak'])->name('_delete_lacak');
 });
 
 Route::prefix('auth')->group(function () {
@@ -90,12 +114,12 @@ Route::get('dashboard/lacak/form_lacak', function () {
 // Route::get('dashboard/informasi/form_info', function () {
 //     return view('/admin/pages/form_info');
 // });
-Route::get('dashboard/materi', function () {
-    return view('/admin/pages/materi');
-});
-Route::get('dashboard/materi/form_materi', function () {
-    return view('/admin/pages/form_materi');
-});
+// Route::get('dashboard/materi', function () {
+//     return view('/admin/pages/materi');
+// });
+// Route::get('dashboard/materi/form_materi', function () {
+//     return view('/admin/pages/form_materi');
+// });
 // Route::get('dashboard/kelola', function () {
 //     return view('/admin/pages/kelola');
 // });

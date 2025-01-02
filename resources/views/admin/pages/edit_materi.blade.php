@@ -28,22 +28,23 @@
                 </div>
                 <div class="card mb-4">
                     <div class="card-header d-flex align-items-center justify-content-between">
-                        <h5 class="mb-0">Tambah Materi Bimbingan TA</h5>
+                        <h5 class="mb-0">Update Materi Bimbingan TA</h5>
                     </div>
                     <div class="card-body">
-                        <form action="{{ url('/materi/_tambah_materi') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ url('/materi/_edit_materi') }}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            <input type="hidden" name="id" value="{{ $materi->id }}">
                             <div class="mb-3 row">
                                 <label for="html5-text-input" class="col-md-2 col-form-label">Topik Bimbingan</label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="text" name="topik" value=""
+                                    <input class="form-control" type="text" name="topik" value="{{ $materi->topik }}"
                                         id="html5-text-input" />
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="exampleFormControlTextarea1" class="col-md-2 col-form-label">Deskripsi</label>
                                 <div class="col-md-10">
-                                    <textarea class="form-control" name="deskripsi" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    <textarea class="form-control" name="deskripsi" id="exampleFormControlTextarea1" rows="3">{{ $materi->deskripsi }}</textarea>
                                 </div>
                             </div>
                             <div class="mb-3 row">

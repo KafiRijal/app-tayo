@@ -10,15 +10,15 @@
                     <h4 class="fw-bold py-3 mb-4">Materi</h4>
                 </div>
                 <div class="col-2 py-2">
-                    <a href="{{ url('dashboard/materi/form_materi') }}" type="button" class="btn btn-primary">
+                    <a href="{{ url('materi/tambah_materi') }}" type="button" class="btn btn-primary">
                         <span class="tf-icons bx bx-plus"></span>&nbsp; Tambah
                     </a>
                 </div>
             </div>
             <div class="card">
                 <h5 class="card-header">Materi Bimbingan TA</h5>
-                <div class="table-responsive text-nowrap">
-                    <table class="table">
+                <div class="table-responsive text-nowrap m-3">
+                    <table id="materitable" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -27,116 +27,93 @@
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                        <tbody class="table-border-bottom-0">
-                            <tr>
-                                <td><strong>1</strong></td>
-                                <td>Pemilihan dan Perumusan Topik</td>
-                                <td>Bimbingan Tugas Akhir ke-1</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                            data-bs-toggle="dropdown">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                    class="bx bx-edit-alt me-2"></i>
-                                                Edit</a>
-                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                    class="bx bx-trash me-2"></i>
-                                                Delete</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>1</strong></td>
-                                <td>Pemilihan dan Perumusan Topik</td>
-                                <td>Bimbingan Tugas Akhir ke-1</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                            data-bs-toggle="dropdown">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                    class="bx bx-edit-alt me-2"></i>
-                                                Edit</a>
-                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                    class="bx bx-trash me-2"></i>
-                                                Delete</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>1</strong></td>
-                                <td>Pemilihan dan Perumusan Topik</td>
-                                <td>Bimbingan Tugas Akhir ke-1</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                            data-bs-toggle="dropdown">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                    class="bx bx-edit-alt me-2"></i>
-                                                Edit</a>
-                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                    class="bx bx-trash me-2"></i>
-                                                Delete</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>1</strong></td>
-                                <td>Pemilihan dan Perumusan Topik</td>
-                                <td>Bimbingan Tugas Akhir ke-1</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                            data-bs-toggle="dropdown">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                    class="bx bx-edit-alt me-2"></i>
-                                                Edit</a>
-                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                    class="bx bx-trash me-2"></i>
-                                                Delete</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>1</strong></td>
-                                <td>Pemilihan dan Perumusan Topik</td>
-                                <td>Bimbingan Tugas Akhir ke-1</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                            data-bs-toggle="dropdown">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                    class="bx bx-edit-alt me-2"></i>
-                                                Edit</a>
-                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                    class="bx bx-trash me-2"></i>
-                                                Delete</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('template_scripts')
+    <script>
+        $(document).ready(function() {
+            $('#materitable').DataTable({
+                processing: true,
+                serverSide: false,
+                ajax: {
+                    url: "{{ url('materi/_list_materi') }}",
+                    type: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                },
+                columns: [{
+                        data: null,
+                        className: 'text-center',
+                        orderable: true,
+                        render: function(data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    },
+                    {
+                        data: 'topik',
+                    },
+                    {
+                        data: 'deskripsi',
+                    },
+                    {
+                        data: "id",
+                        render: function(data, type, row, meta) {
+                            var deleteLink =
+                                `<a href="{{ url('/materi/_delete_materi') }}" class="btn btn-danger btn-sm delete-btn m-2" data-id="${data}"><i class="bx bx-trash"> </i></a>`;
+                            var editLink =
+                                `<a href="{{ url('/materi/edit_materi') }}/${data}" class="btn btn-primary btn-sm edit-btn" data-id="${data}"><i class="bx bx-edit-alt"></i></a>`;
+                            return deleteLink + ' ' + editLink;
+                        }
+                    }
+                ]
+            });
+        });
+        $('#materitable').on('click', '.delete-btn', function(e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            Swal.fire({
+                title: 'Anda yakin?',
+                text: "Data ini akan dihapus secara permanen!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: `{{ url('materi/_delete_materi/') }}/${id}`,
+                        type: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(response) {
+                            Swal.fire({
+                                title: 'Berhasil!',
+                                text: 'Data berhasil dihapus.',
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            });
+                            $('#materitable').DataTable().ajax.reload();
+                        },
+                        error: function(error) {
+                            console.error('Gagal menghapus data:', error);
+                            Swal.fire({
+                                title: 'Gagal!',
+                                text: 'Data gagal dihapus Karena Id Sudah digunakan',
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 @endsection

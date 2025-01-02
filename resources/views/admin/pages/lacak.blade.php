@@ -29,140 +29,99 @@
             </div>
             <div class="card mb-4">
                 <h5 class="card-header">Daftar Tugas</h5>
-                <div class="table-responsive text-nowrap">
-                    <table class="table">
+                <div class="table-responsive text-nowrap m-3">
+                    <table id="lacaktable" class="table table-bordered table-striped">
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Deskripsi Tugas</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                        <tbody class="table-border-bottom-0">
-                            <tr>
-                                <td>
-                                    <label class="list-group-item">
-                                        <input class="form-check-input me-1" type="checkbox" value="" />
-                                        Memilih topik penelitian yang relevan dengan bidang Teknik
-                                        Informatika
-                                    </label>
-                                </td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                            data-bs-toggle="dropdown">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                    class="bx bx-edit-alt me-2"></i>
-                                                Ubah</a>
-                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                    class="bx bx-trash me-2"></i>
-                                                Hapus</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label class="list-group-item">
-                                        <input class="form-check-input me-1" type="checkbox" value="" />
-                                        Mengajukan proposal penelitian
-                                    </label>
-                                </td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                            data-bs-toggle="dropdown">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                    class="bx bx-edit-alt me-2"></i>
-                                                Ubah</a>
-                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                    class="bx bx-trash me-2"></i>
-                                                Hapus</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label class="list-group-item">
-                                        <input class="form-check-input me-1" type="checkbox" value="" />
-                                        Mempersiapkan referensi
-                                    </label>
-                                </td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                            data-bs-toggle="dropdown">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                    class="bx bx-edit-alt me-2"></i>
-                                                Ubah</a>
-                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                    class="bx bx-trash me-2"></i>
-                                                Hapus</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label class="list-group-item">
-                                        <input class="form-check-input me-1" type="checkbox" value="" />
-                                        Mendesain sistem atau aplikasi
-                                    </label>
-                                </td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                            data-bs-toggle="dropdown">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                    class="bx bx-edit-alt me-2"></i>
-                                                Ubah</a>
-                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                    class="bx bx-trash me-2"></i>
-                                                Hapus</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label class="list-group-item">
-                                        <input class="form-check-input me-1" type="checkbox" value="" />
-                                        Membuat rancangan antarmuka
-                                    </label>
-                                </td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                            data-bs-toggle="dropdown">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                    class="bx bx-edit-alt me-2"></i>
-                                                Ubah</a>
-                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                    class="bx bx-trash me-2"></i>
-                                                Hapus</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('template_scripts')
+    <script>
+        $(document).ready(function() {
+            $('#lacaktable').DataTable({
+                processing: true,
+                serverSide: false,
+                ajax: {
+                    url: "{{ url('lacak/_list_lacak') }}",
+                    type: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                },
+                columns: [{
+                        data: null,
+                        className: 'text-center',
+                        orderable: true,
+                        render: function(data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    },
+                    {
+                        data: 'deskripsi',
+                    },
+                    {
+                        data: "id",
+                        render: function(data, type, row, meta) {
+                            var deleteLink =
+                                `<a href="{{ url('/lacak/_delete_lacak') }}" class="btn btn-danger btn-sm delete-btn m-2" data-id="${data}"><i class="bx bx-trash"> </i></a>`;
+                            var editLink =
+                                `<a href="{{ url('/lacak/edit_lacak') }}/${data}" class="btn btn-primary btn-sm edit-btn" data-id="${data}"><i class="bx bx-edit-alt"></i></a>`;
+                            return deleteLink + ' ' + editLink;
+                        }
+                    }
+                ]
+            });
+        });
+        $('#lacaktable').on('click', '.delete-btn', function(e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            Swal.fire({
+                title: 'Anda yakin?',
+                text: "Data ini akan dihapus secara permanen!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: `{{ url('lacak/_delete_lacak/') }}/${id}`,
+                        type: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(response) {
+                            Swal.fire({
+                                title: 'Berhasil!',
+                                text: 'Data berhasil dihapus.',
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            });
+                            $('#lacaktable').DataTable().ajax.reload();
+                        },
+                        error: function(error) {
+                            console.error('Gagal menghapus data:', error);
+                            Swal.fire({
+                                title: 'Gagal!',
+                                text: 'Data gagal dihapus Karena Id Sudah digunakan',
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 @endsection
