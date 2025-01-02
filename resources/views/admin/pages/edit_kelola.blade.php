@@ -5,11 +5,7 @@
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="col-xxl">
-                <div class="card mb-4">
-                    <div class="card-header d-flex align-items-center justify-content-between">
-                        <h5 class="mb-0">Update Hak Akses</h5>
-                    </div>
-
+                <div class="row mt-2 g-2 align-items-center">
                     @if ($errors->any())
                         <div class="alert alert-danger text-center">
                             <ul>
@@ -19,9 +15,23 @@
                             </ul>
                         </div>
                     @endif
-
+                    @if (session('error'))
+                        <div class="alert alert-danger text-center">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                    @if (session('success'))
+                        <div class="alert alert-success text-center">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                        <h5 class="mb-0">Update Hak Akses</h5>
+                    </div>
                     <div class="card-body">
-                        <form action="{{ url('/usermanagement/_edit') }}" method="POST">
+                        <form action="{{ url('/usermanagement/_edit_kelola') }}" method="POST">
                             @csrf
                             <input type="hidden" name="id" value="{{ $user->id }}">
                             <div class="mb-3 row">
@@ -64,6 +74,7 @@
         </div>
     </div>
 @endsection
+
 @section('template_scripts')
     <script>
         $(document).ready(function() {

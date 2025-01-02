@@ -8,7 +8,7 @@
                     <h4 class="fw-bold py-3 mb-4">Kelola Hak Akses</h4>
                 </div>
                 <div class="col-2 py-2">
-                    <a href="{{ url('usermanagement/tambah') }}" type="button" class="btn btn-primary">
+                    <a href="{{ url('usermanagement/tambah_kelola') }}" type="button" class="btn btn-primary">
                         <span class="tf-icons bx bx-plus"></span>&nbsp; Tambah
                     </a>
                 </div>
@@ -67,9 +67,9 @@
                         data: "id",
                         render: function(data, type, row, meta) {
                             var deleteLink =
-                                `<a href="#" class="btn btn-danger btn-sm delete-btn m-2" data-id="${data}"><i class="bx bx-trash"> </i></a>`;
+                                `<a href="{{ url('/usermanagement/_delete_kelola') }}" class="btn btn-danger btn-sm delete-btn m-2" data-id="${data}"><i class="bx bx-trash"> </i></a>`;
                             var editLink =
-                                `<a href="{{ url('/usermanagement/delete') }}/${data}" class="btn btn-primary btn-sm edit-btn" data-id="${data}"><i class="bx bx-edit-alt"></i></a>`;
+                                `<a href="{{ url('/usermanagement/edit_kelola') }}/${data}" class="btn btn-primary btn-sm edit-btn" data-id="${data}"><i class="bx bx-edit-alt"></i></a>`;
                             return deleteLink + ' ' + editLink;
                         }
                     }
@@ -90,7 +90,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: `{{ url('usermanagement/_delete/') }}/${id}`,
+                        url: `{{ url('usermanagement/_delete_kelola/') }}/${id}`,
                         type: 'DELETE',
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -108,7 +108,7 @@
                             console.error('Gagal menghapus data:', error);
                             Swal.fire({
                                 title: 'Gagal!',
-                                text: 'Data gagal dihapus Karena Id Pembina Sudah digunakan di umkm',
+                                text: 'Data gagal dihapus Karena Id Sudah digunakan',
                                 icon: 'error',
                                 confirmButtonText: 'OK'
                             });

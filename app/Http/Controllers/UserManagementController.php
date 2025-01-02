@@ -14,11 +14,11 @@ class UserManagementController extends Controller
     {
         return view('/admin/pages/kelola');
     }
-    public function tambah()
+    public function tambah_kelola()
     {
         return view('/admin/pages/form_kelola');
     }
-    public function edit($id)
+    public function edit_kelola($id)
     {
         $user = User::findOrFail($id);
 
@@ -51,7 +51,34 @@ class UserManagementController extends Controller
         $role = Role::all();
         return response()->json($role);
     }
-    public function _edit(Request $request)
+
+    public function _tambah_kelola(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => [
+                'required',
+                'min:8',
+            ],
+            'role_id' => 'required|integer',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('tambah_kelola')->withErrors($validator)->withInput();
+        }
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role_id' => $request->role_id,
+        ]);
+
+        return redirect()->route('kelola')->with('success', 'Registration successful. Please login.');
+    }
+
+    public function _edit_kelola(Request $request)
     {
         // Validasi input
         $validator = Validator::make($request->all(), [
@@ -70,7 +97,7 @@ class UserManagementController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('edit', ['id' => $request->id])->withErrors($validator)->withInput();
+            return redirect()->route('edit_kelola', ['id' => $request->id])->withErrors($validator)->withInput();
         }
 
         // Cari user berdasarkan ID
@@ -92,33 +119,7 @@ class UserManagementController extends Controller
         return redirect()->route('kelola')->with('success', 'User updated successfully.');
     }
 
-    public function _tambah(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => [
-                'required',
-                'min:8',
-            ],
-            'role_id' => 'required|integer',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->route('tambah')->withErrors($validator)->withInput();
-        }
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role_id' => $request->role_id,
-        ]);
-
-        return redirect()->route('kelola')->with('success', 'Registration successful. Please login.');
-    }
-
-    public function _delete(string $id)
+    public function _delete_kelola(string $id)
     {
         try {
             $user = User::findOrFail($id);

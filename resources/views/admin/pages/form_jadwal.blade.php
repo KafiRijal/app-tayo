@@ -5,34 +5,60 @@
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="col-xxl">
+                <div class="row mt-2 g-2 align-items-center">
+                    @if ($errors->any())
+                        <div class="alert alert-danger text-center">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    @if (session('error'))
+                        <div class="alert alert-danger text-center">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                    @if (session('success'))
+                        <div class="alert alert-success text-center">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                </div>
                 <div class="card mb-4">
                     <div class="card-header d-flex align-items-center justify-content-between">
-                        <h5 class="mb-0">Tambah/Update Jadwal Bimbingan TA</h5>
+                        <h5 class="mb-0">Tambah Jadwal Bimbingan TA</h5>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form action="{{ url('/jadwal/_tambah_jadwal') }}" method="POST">
+                            @csrf
                             <div class="mb-3 row">
                                 <label for="html5-date-input" class="col-md-2 col-form-label">Tanggal</label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="date" value="" id="html5-date-input" />
+                                    <input class="form-control" type="date" name="tanggal" value=""
+                                        id="html5-date-input" />
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="html5-time-input" class="col-md-2 col-form-label">Waktu</label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="time" value="" id="html5-time-input" />
+                                    <input class="form-control" type="time" name="waktu" value=""
+                                        id="html5-time-input" />
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="html5-text-input" class="col-md-2 col-form-label">Lokasi</label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="text" value="" id="html5-text-input" />
+                                    <input class="form-control" type="text" name="lokasi" value=""
+                                        id="html5-text-input" />
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="html5-text-input" class="col-md-2 col-form-label">Dosen Pembimbing</label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="text" value="" id="html5-text-input" />
+                                    <select name="dosen_id" id="dosen" class="form-select form-control">
+                                    </select>
                                 </div>
                             </div>
                             <div class="row justify-content-end">
@@ -46,4 +72,36 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('template_scripts')
+    <script>
+        $(document).ready(function() {
+            let token = $('meta[name="csrf-token"]').attr('content');
+            getDosen();
+
+            function getDosen() {
+                $.ajax({
+                    url: "{{ url('jadwal/_dosen') }}",
+                    type: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': token
+                    },
+                    success: function(data) {
+                        console.log(data);
+
+                        var provinceSelect = $('#dosen');
+                        provinceSelect.empty();
+                        provinceSelect.append('<option selected>Pilih Dosen</option>');
+                        $.each(data, function(key, value) {
+                            let selected = (value.id == "{{ old('dosen') }}") ?
+                                'selected' : '';
+                            provinceSelect.append('<option value="' + value.id + '" ' +
+                                selected + '>' + value.dosen + '</option>');
+                        });
+                    }
+                });
+            }
+        });
+    </script>
 @endsection

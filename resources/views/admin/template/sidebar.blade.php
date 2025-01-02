@@ -31,13 +31,13 @@
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="{{ url('dashboard/jadwal') }}" class="menu-link">
+                        <a href="{{ url('jadwal/list_jadwal') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bxs-graduation"></i>
                             <div data-i18n="Form Layouts">Jadwal TA</div>
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="{{ url('dashboard/informasi') }}" class="menu-link">
+                        <a href="{{ url('informasi/list_info') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-globe"></i>
                             <div data-i18n="Form Layouts">Informasi</div>
                         </a>

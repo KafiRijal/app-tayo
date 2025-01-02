@@ -1,20 +1,45 @@
 <?php
 
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\InformasiController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('usermanagement')->group(function () {
     Route::get('kelola', [UserManagementController::class, 'kelola'])->name('kelola');
-    Route::get('tambah', [UserManagementController::class, 'tambah'])->name('tambah');
-    Route::get('edit/{id}', [UserManagementController::class, 'edit'])->name('edit');
+    Route::get('tambah_kelola', [UserManagementController::class, 'tambah_kelola'])->name('tambah_kelola');
+    Route::get('edit_kelola/{id}', [UserManagementController::class, 'edit_kelola'])->name('edit_kelola');
 
     Route::post('_kelola', [UserManagementController::class, '_kelola'])->name('_kelola');
-    Route::post('_tambah', [UserManagementController::class, '_tambah'])->name('_tambah');
-    Route::post('_edit', [UserManagementController::class, '_edit'])->name('_edit');
+    Route::post('_tambah_kelola', [UserManagementController::class, '_tambah_kelola'])->name('_tambah_kelola');
+    Route::post('_edit_kelola', [UserManagementController::class, '_edit_kelola'])->name('_edit_kelola');
     Route::post('_role', [UserManagementController::class, '_role']);
 
-    Route::delete('_delete/{id}', [UserManagementController::class, '_delete'])->name('_delete');
+    Route::delete('_delete_kelola/{id}', [UserManagementController::class, '_delete_kelola'])->name('_delete_kelola');
+});
+Route::prefix('jadwal')->group(function () {
+    Route::get('list_jadwal', [JadwalController::class, 'list_jadwal'])->name('list_jadwal');
+    Route::get('tambah_jadwal', [JadwalController::class, 'tambah_jadwal'])->name('tambah_jadwal');
+    Route::get('edit_jadwal/{id}', [JadwalController::class, 'edit_jadwal'])->name('edit_jadwal');
+
+    Route::post('_list_jadwal', [JadwalController::class, '_list_jadwal'])->name('_list_jadwal');
+    Route::post('_tambah_jadwal', [JadwalController::class, '_tambah_jadwal'])->name('_tambah_jadwal');
+    Route::post('_edit_jadwal', [JadwalController::class, '_edit_jadwal'])->name('_edit_jadwal');
+    Route::post('_dosen', [JadwalController::class, '_dosen']);
+
+    Route::delete('_delete_jadwal/{id}', [JadwalController::class, '_delete_jadwal'])->name('_delete_jadwal');
+});
+Route::prefix('informasi')->group(function () {
+    Route::get('list_info', [InformasiController::class, 'list_info'])->name('list_info');
+    Route::get('tambah_info', [InformasiController::class, 'tambah_info'])->name('tambah_info');
+    Route::get('edit_info/{id}', [InformasiController::class, 'edit_info'])->name('edit_info');
+
+    Route::post('_list_info', [InformasiController::class, '_list_info'])->name('_list_info');
+    Route::post('_tambah_info', [InformasiController::class, '_tambah_info'])->name('_tambah_info');
+    Route::post('_edit_info', [InformasiController::class, '_edit_info'])->name('_edit_info');
+
+    Route::delete('_delete_info/{id}', [InformasiController::class, '_delete_info'])->name('_delete_info');
 });
 
 Route::prefix('auth')->group(function () {
@@ -53,18 +78,18 @@ Route::get('dashboard/lacak', function () {
 Route::get('dashboard/lacak/form_lacak', function () {
     return view('/admin/pages/form_lacak');
 });
-Route::get('dashboard/jadwal', function () {
-    return view('/admin/pages/jadwal');
-});
-Route::get('dashboard/jadwal/form_jadwal', function () {
-    return view('/admin/pages/form_jadwal');
-});
-Route::get('dashboard/informasi', function () {
-    return view('/admin/pages/informasi');
-});
-Route::get('dashboard/informasi/form_info', function () {
-    return view('/admin/pages/form_info');
-});
+// Route::get('dashboard/jadwal', function () {
+//     return view('/admin/pages/jadwal');
+// });
+// Route::get('dashboard/jadwal/form_jadwal', function () {
+//     return view('/admin/pages/form_jadwal');
+// });
+// Route::get('dashboard/informasi', function () {
+//     return view('/admin/pages/informasi');
+// });
+// Route::get('dashboard/informasi/form_info', function () {
+//     return view('/admin/pages/form_info');
+// });
 Route::get('dashboard/materi', function () {
     return view('/admin/pages/materi');
 });
