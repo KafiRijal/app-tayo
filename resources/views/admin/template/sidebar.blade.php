@@ -24,36 +24,46 @@
                     <!-- Forms & Tables -->
                     <li class="menu-header small text-uppercase"><span class="menu-header-text">Menu</span></li>
                     <!-- Forms -->
-                    <li class="menu-item">
-                        <a href="{{ url('lacak/list_lacak') }}" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-list-check"></i>
-                            <div data-i18n="Form Elements">Lacak & Daftar TA</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="{{ url('jadwal/list_jadwal') }}" class="menu-link">
-                            <i class="menu-icon tf-icons bx bxs-graduation"></i>
-                            <div data-i18n="Form Layouts">Jadwal TA</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="{{ url('informasi/list_info') }}" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-globe"></i>
-                            <div data-i18n="Form Layouts">Informasi</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="{{ url('materi/list_materi') }}" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-book"></i>
-                            <div data-i18n="Form Layouts">Materi</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="{{ url('usermanagement/kelola') }}" class="menu-link">
-                            <i class="menu-icon tf-icons bx bxs-user-detail"></i>
-                            <div data-i18n="Form Layouts">Kelola Akses</div>
-                        </a>
-                    </li>
+                    @if (Auth::user()->role->id == 1)
+                        <li class="menu-item">
+                            <a href="{{ url('lacak/list_lacak') }}" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-list-check"></i>
+                                <div data-i18n="Form Elements">Lacak & Daftar TA</div>
+                            </a>
+                        </li>
+                    @endif
+                    @if (Auth::user()->role->id == 1 || Auth::user()->role->id == 2)
+                        <li class="menu-item">
+                            <a href="{{ url('jadwal/list_jadwal') }}" class="menu-link">
+                                <i class="menu-icon tf-icons bx bxs-graduation"></i>
+                                <div data-i18n="Form Layouts">Jadwal TA</div>
+                            </a>
+                        </li>
+                    @endif
+                    @if (Auth::user()->role->id == 3)
+                        <li class="menu-item">
+                            <a href="{{ url('informasi/list_info') }}" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-globe"></i>
+                                <div data-i18n="Form Layouts">Informasi</div>
+                            </a>
+                        </li>
+                    @endif
+                    @if (Auth::user()->role->id == 3 || Auth::user()->role->id == 2)
+                        <li class="menu-item">
+                            <a href="{{ url('materi/list_materi') }}" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-book"></i>
+                                <div data-i18n="Form Layouts">Materi</div>
+                            </a>
+                        </li>
+                    @endif
+                    @if (Auth::user()->role->id == 3)
+                        <li class="menu-item">
+                            <a href="{{ url('usermanagement/kelola') }}" class="menu-link">
+                                <i class="menu-icon tf-icons bx bxs-user-detail"></i>
+                                <div data-i18n="Form Layouts">Kelola Akses</div>
+                            </a>
+                        </li>
+                    @endif
                 </ul>
             </aside>
             <!-- / Menu -->

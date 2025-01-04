@@ -12,5 +12,7 @@ class Lacak extends Model
 
     protected $fillable = [
         'deskripsi',
+        'user_id',
+        'status',
     ];
 }

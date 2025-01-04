@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Lacak;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class LacakController extends Controller
 {
@@ -20,7 +21,7 @@ class LacakController extends Controller
 
     public function _list_lacak()
     {
-        $lacak = Lacak::all();
+        $lacak = Lacak::where('user_id', Auth::user()->id)->get();
 
         $data = [
             "data" => $lacak
@@ -50,6 +51,7 @@ class LacakController extends Controller
 
         $lacak = Lacak::create([
             'deskripsi' => $request->deskripsi,
+            'user_id' => Auth::user()->id
         ]);
 
         return redirect()->route('list_lacak')->with('success', 'Create successfully');
@@ -71,11 +73,28 @@ class LacakController extends Controller
 
         // Update data
         $lacak->deskripsi = $request->deskripsi;
+        $lacak->user_id =  Auth::user()->id;
 
         // Simpan perubahan
         $lacak->save();
 
         return redirect()->route('list_lacak')->with('success', 'Updated successfully.');
+    }
+
+    public function _check(Request $request, $id)
+    {
+        // Cari user berdasarkan ID
+        $lacak = Lacak::findOrFail($id);
+
+        // Update data
+        $lacak->status = "Selesai";
+        // Simpan perubahan
+        $lacak->save();
+
+
+        return response()->json([
+            'message' => 'Data berhasil dihapus.'
+        ], 200);
     }
 
     public function _delete_lacak(string $id)

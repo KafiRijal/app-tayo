@@ -7,7 +7,11 @@ use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\LacakController;
 use App\Http\Controllers\MateriController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Middleware\RedirectMiddleware;
+use App\Http\Middleware\RoleMiddleware;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', [LandingPageController::class, 'index'])->name('index');
 Route::get('tentang', [LandingPageController::class, 'tentang'])->name('tentang');
@@ -15,10 +19,11 @@ Route::get('info', [LandingPageController::class, 'info'])->name('info');
 Route::get('kalender', [LandingPageController::class, 'kalender'])->name('kalender');
 Route::get('materi', [LandingPageController::class, 'materi'])->name('materi');
 Route::get('kontak', [LandingPageController::class, 'kontak'])->name('kontak');
-Route::get('dashboard', function () {
-    return view('/admin/pages/dashboard');
-})->name('dashboard');
-Route::prefix('usermanagement')->group(function () {
+
+Route::prefix('dashboard')->group(function () {
+    Route::get('', [DashboardController::class, 'dashboard'])->name('dashboard');
+});
+Route::prefix('usermanagement')->middleware(['auth', RoleMiddleware::class . ':3'])->group(function () {
     Route::get('kelola', [UserManagementController::class, 'kelola'])->name('kelola');
     Route::get('tambah_kelola', [UserManagementController::class, 'tambah_kelola'])->name('tambah_kelola');
     Route::get('edit_kelola/{id}', [UserManagementController::class, 'edit_kelola'])->name('edit_kelola');
@@ -30,7 +35,7 @@ Route::prefix('usermanagement')->group(function () {
 
     Route::delete('_delete_kelola/{id}', [UserManagementController::class, '_delete_kelola'])->name('_delete_kelola');
 });
-Route::prefix('jadwal')->group(function () {
+Route::prefix('jadwal')->middleware(['auth', RoleMiddleware::class . ':1,2'])->group(function () {
     Route::get('list_jadwal', [JadwalController::class, 'list_jadwal'])->name('list_jadwal');
     Route::get('tambah_jadwal', [JadwalController::class, 'tambah_jadwal'])->name('tambah_jadwal');
     Route::get('edit_jadwal/{id}', [JadwalController::class, 'edit_jadwal'])->name('edit_jadwal');
@@ -42,7 +47,7 @@ Route::prefix('jadwal')->group(function () {
 
     Route::delete('_delete_jadwal/{id}', [JadwalController::class, '_delete_jadwal'])->name('_delete_jadwal');
 });
-Route::prefix('informasi')->group(function () {
+Route::prefix('informasi')->middleware(['auth', RoleMiddleware::class . ':3'])->group(function () {
     Route::get('list_info', [InformasiController::class, 'list_info'])->name('list_info');
     Route::get('tambah_info', [InformasiController::class, 'tambah_info'])->name('tambah_info');
     Route::get('edit_info/{id}', [InformasiController::class, 'edit_info'])->name('edit_info');
@@ -53,7 +58,7 @@ Route::prefix('informasi')->group(function () {
 
     Route::delete('_delete_info/{id}', [InformasiController::class, '_delete_info'])->name('_delete_info');
 });
-Route::prefix('materi')->group(function () {
+Route::prefix('materi')->middleware(['auth', RoleMiddleware::class . ':2,3'])->group(function () {
     Route::get('list_materi', [MateriController::class, 'list_materi'])->name('list_materi');
     Route::get('tambah_materi', [MateriController::class, 'tambah_materi'])->name('tambah_materi');
     Route::get('edit_materi/{id}', [MateriController::class, 'edit_materi'])->name('edit_materi');
@@ -64,7 +69,7 @@ Route::prefix('materi')->group(function () {
 
     Route::delete('_delete_materi/{id}', [MateriController::class, '_delete_materi'])->name('_delete_materi');
 });
-Route::prefix('lacak')->group(function () {
+Route::prefix('lacak')->middleware(['auth', RoleMiddleware::class . ':1'])->group(function () {
     Route::get('list_lacak', [LacakController::class, 'list_lacak'])->name('list_lacak');
     Route::get('tambah_lacak', [LacakController::class, 'tambah_lacak'])->name('tambah_lacak');
     Route::get('edit_lacak/{id}', [LacakController::class, 'edit_lacak'])->name('edit_lacak');
@@ -74,62 +79,14 @@ Route::prefix('lacak')->group(function () {
     Route::post('_edit_lacak', [LacakController::class, '_edit_lacak'])->name('_edit_lacak');
 
     Route::delete('_delete_lacak/{id}', [LacakController::class, '_delete_lacak'])->name('_delete_lacak');
+    Route::post('_check/{id}', [LacakController::class, '_check'])->name('_check');
 });
 
-Route::prefix('auth')->group(function () {
+Route::prefix('auth')->middleware([RedirectMiddleware::class . ':guest'])->group(function () {
     Route::get('login', [AuthController::class, 'login'])->name('login');
     Route::post('_login', [AuthController::class, '_login'])->name('_login');
-    Route::post('_logout', [AuthController::class, '_logout']);
 });
-
-// Route::get('/', function () {
-//     return view('index');
-// });
-// Route::get('tentang', function () {
-//     return view('tentang');
-// });
-// Route::get('info', function () {
-//     return view('info');
-// });
-// Route::get('kalender', function () {
-//     return view('kalender');
-// });
-// Route::get('materi', function () {
-//     return view('materi');
-// });
-// Route::get('kontak', function () {
-//     return view('kontak');
-// });
-// Route::get('login', function () {
-//     return view('login');
-// });
-// Route::get('dashboard/lacak', function () {
-//     return view('/admin/pages/lacak');
-// });
-// Route::get('dashboard/lacak/form_lacak', function () {
-//     return view('/admin/pages/form_lacak');
-// });
-// Route::get('dashboard/jadwal', function () {
-//     return view('/admin/pages/jadwal');
-// });
-// Route::get('dashboard/jadwal/form_jadwal', function () {
-//     return view('/admin/pages/form_jadwal');
-// });
-// Route::get('dashboard/informasi', function () {
-//     return view('/admin/pages/informasi');
-// });
-// Route::get('dashboard/informasi/form_info', function () {
-//     return view('/admin/pages/form_info');
-// });
-// Route::get('dashboard/materi', function () {
-//     return view('/admin/pages/materi');
-// });
-// Route::get('dashboard/materi/form_materi', function () {
-//     return view('/admin/pages/form_materi');
-// });
-// Route::get('dashboard/kelola', function () {
-//     return view('/admin/pages/kelola');
-// });
-// Route::get('dashboard/kelola/form_kelola', function () {
-//     return view('/admin/pages/form_kelola');
-// });
+Route::post('auth/_logout', [AuthController::class, '_logout']);
+Route::get('/404', function () {
+    return view('404');
+})->name('notFound');

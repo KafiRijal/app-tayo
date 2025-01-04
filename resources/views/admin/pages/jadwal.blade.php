@@ -24,7 +24,9 @@
                                 <th>Waktu</th>
                                 <th>Lokasi</th>
                                 <th>Dosen Pembimbing</th>
-                                <th>Aksi</th>
+                                @if (Auth::user()->role->id == 2)
+                                    <th>Aksi</th>
+                                @endif
                             </tr>
                         </thead>
                     </table>
@@ -67,16 +69,18 @@
                     {
                         data: 'dosen',
                     },
-                    {
-                        data: "id",
-                        render: function(data, type, row, meta) {
-                            var deleteLink =
-                                `<a href="{{ url('/jadwal/_delete_jadwal') }}" class="btn btn-danger btn-sm delete-btn m-2" data-id="${data}"><i class="bx bx-trash"> </i></a>`;
-                            var editLink =
-                                `<a href="{{ url('/jadwal/edit_jadwal') }}/${data}" class="btn btn-primary btn-sm edit-btn" data-id="${data}"><i class="bx bx-edit-alt"></i></a>`;
-                            return deleteLink + ' ' + editLink;
+                    @if (Auth::user()->role->id == 2)
+                        {
+                            data: "id",
+                            render: function(data, type, row, meta) {
+                                var deleteLink =
+                                    `<a href="{{ url('/jadwal/_delete_jadwal') }}" class="btn btn-danger btn-sm delete-btn m-2" data-id="${data}"><i class="bx bx-trash"> </i></a>`;
+                                var editLink =
+                                    `<a href="{{ url('/jadwal/edit_jadwal') }}/${data}" class="btn btn-primary btn-sm edit-btn" data-id="${data}"><i class="bx bx-edit-alt"></i></a>`;
+                                return deleteLink + ' ' + editLink;
+                            }
                         }
-                    }
+                    @endif
                 ]
             });
         });
