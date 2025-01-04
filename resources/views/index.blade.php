@@ -57,144 +57,45 @@
                 <div class="col-12 text-center">
                     <h2 class="mb-4">Informasi</h1>
                 </div>
+                @if (!empty($info))
+                    @foreach ($info as $inf)
+                        <div class="col-lg-5 col">
+                            <div class="artists-thumb">
+                                <div class="artists-image-wrap">
+                                    <img src="{{ asset('images') . '/' . $inf->image }}" class="artists-image img-fluid">
+                                </div>
 
-                <div class="col-lg-5 col-12">
-                    <div class="artists-thumb">
-                        <div class="artists-image-wrap">
-                            <img src="{{ asset('assets/images/poster1.png') }}" class="artists-image img-fluid">
+                                <div class="artists-hover">
+                                    <p>
+                                        <strong>Nama Event:</strong>
+                                        <br>
+                                        {{ $inf->nama }}
+                                    </p>
+
+                                    <p>
+                                        <strong>Tanggal:</strong>
+                                        <br>
+                                        {{ $inf->tanggal }}
+                                    </p>
+
+                                    <p>
+                                        <strong>HTM:</strong>
+                                        <br>
+                                        {{ $inf->htm }}
+                                    </p>
+
+                                    <hr>
+
+                                    <p class="mb-0">
+                                        <strong>Lokasi:</strong>
+                                        <br>
+                                        {{ $inf->lokasi }}
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-
-                        <div class="artists-hover">
-                            <p>
-                                <strong>Nama Event:</strong>
-                                <br>
-                                Leadership Dynamics A Workshop for Growth
-                            </p>
-
-                            <p>
-                                <strong>Tanggal:</strong>
-                                <br>
-                                28 Desember 2024
-                            </p>
-
-                            <p>
-                                <strong>HTM:</strong>
-                                <br>
-                                Free
-                            </p>
-
-                            <hr>
-
-                            <p class="mb-0">
-                                <strong>Lokasi:</strong>
-                                <br>
-                                Gedung Nasional Indonesia
-                            </p>
-                        </div>
-                    </div>
-                    <div class="artists-thumb">
-                        <div class="artists-image-wrap">
-                            <img src="{{ asset('assets/images/poster4.png') }}" class="artists-image img-fluid">
-                        </div>
-
-                        <div class="artists-hover">
-                            <p>
-                                <strong>Nama Event:</strong>
-                                <br>
-                                Webinar Bisnis "Powering Advenced AI"
-                            </p>
-
-                            <p>
-                                <strong>Tanggal:</strong>
-                                <br>
-                                25 Desember 2024
-                            </p>
-
-                            <p>
-                                <strong>HTM:</strong>
-                                <br>
-                                Free
-                            </p>
-
-                            <hr>
-
-                            <p class="mb-0">
-                                <strong>Lokasi:</strong>
-                                <br>
-                                Jl. Serma Lion Kosong No 1
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-5 col-12">
-                    <div class="artists-thumb">
-                        <div class="artists-image-wrap">
-                            <img src="{{ asset('assets/images/poster2.png') }}" class="artists-image img-fluid">
-                        </div>
-
-                        <div class="artists-hover">
-                            <p>
-                                <strong>Nama Event:</strong>
-                                <br>
-                                Webinar Digital Marketing
-                            </p>
-
-                            <p>
-                                <strong>Tanggal:</strong>
-                                <br>
-                                27 Desember 2024
-                            </p>
-
-                            <p>
-                                <strong>HTM:</strong>
-                                <br>
-                                Free
-                            </p>
-
-                            <hr>
-
-                            <p class="mb-0">
-                                <strong>Lokasi:</strong>
-                                <br>
-                                Jl. Cempaka Raya No 30
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="artists-thumb">
-                        <img src="{{ asset('assets/images/poster3.png') }}" class="artists-image img-fluid">
-
-                        <div class="artists-hover">
-                            <p>
-                                <strong>Nama Event:</strong>
-                                <br>
-                                Creative Copywriting Workshop
-                            </p>
-
-                            <p>
-                                <strong>Tanggal:</strong>
-                                <br>
-                                25 Desember 2024
-                            </p>
-
-                            <p>
-                                <strong>HTM:</strong>
-                                <br>
-                                Free
-                            </p>
-
-                            <hr>
-
-                            <p class="mb-0">
-                                <strong>Lokasi:</strong>
-                                <br>
-                                Danau UI ST. Buntu 12
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
+                    @endforeach
+                @endif
             </div>
         </div>
     </section>
@@ -348,65 +249,49 @@
                 <div class="col-lg-8 col-12 mx-auto">
                     <h2 class="text-center mb-4">Materi</h2>
                 </div>
+                @if (!empty($materi))
+                    @php
+                        $id = 1; // Mulai dari 1
+                    @endphp
+                    @foreach ($materi as $mtr)
+                        <div class="col-lg-6 col-12">
+                            <div class="pricing-thumb">
+                                <div class="d-flex">
+                                    <div>
+                                        <h3>{{ $id }}. <small>{{ $mtr->topik }}</small></h3>
+                                        @php
+                                            $id++;
+                                        @endphp
+                                        <p>{{ $mtr->deskripsi }}</p>
+                                    </div>
+                                </div>
 
-                <div class="col-lg-6 col-12">
-                    <div class="pricing-thumb">
-                        <div class="d-flex">
-                            <div>
-                                <h3>1. <small>Pemilihan dan Perumusan Topik</small></h3>
+                                <ul class="pricing-list mt-3">
+                                    <li class="pricing-list-item"><a target="_blank"
+                                            href="{{ asset('files') . '/' . $mtr->file }}">File
+                                            Materi</a>
+                                    </li>
 
-                                <p>Bimbingan Tugas Akhir ke-1 ini, tersedia:</p>
+                                    <li class="pricing-list-item"><a target="_blank"
+                                            href="{{ asset('videos') . '/' . $mtr->video }}">Video
+                                            Materi</a></li>
+                                </ul>
+
+                                <a class="link-fx-1 color-contrast-higher mt-4" href="ticket.html">
+                                    <span>Lihat Materi</span>
+                                    <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
+                                        <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <circle cx="16" cy="16" r="15.5"></circle>
+                                            <line x1="10" y1="18" x2="16" y2="12"></line>
+                                            <line x1="16" y1="12" x2="22" y2="18"></line>
+                                        </g>
+                                    </svg>
+                                </a>
                             </div>
                         </div>
-
-                        <ul class="pricing-list mt-3">
-                            <li class="pricing-list-item">Slide Materi</li>
-
-                            <li class="pricing-list-item">Video Penjelasan Materi</li>
-                        </ul>
-
-                        <a class="link-fx-1 color-contrast-higher mt-4" href="ticket.html">
-                            <span>Lihat Materi</span>
-                            <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
-                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="16" cy="16" r="15.5"></circle>
-                                    <line x1="10" y1="18" x2="16" y2="12"></line>
-                                    <line x1="16" y1="12" x2="22" y2="18"></line>
-                                </g>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-12 mt-4 mt-lg-0">
-                    <div class="pricing-thumb">
-                        <div class="d-flex">
-                            <div>
-                                <h3>2. <small>Penyusunan Proposal</small></h3>
-
-                                <p>Bimbingan Tugas Akhir ke-2 ini, tersedia:</p>
-                            </div>
-                        </div>
-
-                        <ul class="pricing-list mt-3">
-                            <li class="pricing-list-item">Slide Materi</li>
-
-                            <li class="pricing-list-item">Video Penjelasan Materi</li>
-                        </ul>
-
-                        <a class="link-fx-1 color-contrast-higher mt-4" href="ticket.html">
-                            <span>Lihat Materi</span>
-                            <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
-                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="16" cy="16" r="15.5"></circle>
-                                    <line x1="10" y1="18" x2="16" y2="12"></line>
-                                    <line x1="16" y1="12" x2="22" y2="18"></line>
-                                </g>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
+                    @endforeach
+                @endif
             </div>
         </div>
     </section>

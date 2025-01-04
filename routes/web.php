@@ -6,8 +6,18 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\LacakController;
 use App\Http\Controllers\MateriController;
+use App\Http\Controllers\LandingPageController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', [LandingPageController::class, 'index'])->name('index');
+Route::get('tentang', [LandingPageController::class, 'tentang'])->name('tentang');
+Route::get('info', [LandingPageController::class, 'info'])->name('info');
+Route::get('kalender', [LandingPageController::class, 'kalender'])->name('kalender');
+Route::get('materi', [LandingPageController::class, 'materi'])->name('materi');
+Route::get('kontak', [LandingPageController::class, 'kontak'])->name('kontak');
+Route::get('dashboard', function () {
+    return view('/admin/pages/dashboard');
+})->name('dashboard');
 Route::prefix('usermanagement')->group(function () {
     Route::get('kelola', [UserManagementController::class, 'kelola'])->name('kelola');
     Route::get('tambah_kelola', [UserManagementController::class, 'tambah_kelola'])->name('tambah_kelola');
@@ -72,36 +82,33 @@ Route::prefix('auth')->group(function () {
     Route::post('_logout', [AuthController::class, '_logout']);
 });
 
-Route::get('/', function () {
-    return view('index');
-});
-Route::get('about', function () {
-    return view('about');
-});
-Route::get('artists', function () {
-    return view('artists');
-});
-Route::get('schedule', function () {
-    return view('schedule');
-});
-Route::get('pricing', function () {
-    return view('pricing');
-});
-Route::get('contact', function () {
-    return view('contact');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
+// Route::get('tentang', function () {
+//     return view('tentang');
+// });
+// Route::get('info', function () {
+//     return view('info');
+// });
+// Route::get('kalender', function () {
+//     return view('kalender');
+// });
+// Route::get('materi', function () {
+//     return view('materi');
+// });
+// Route::get('kontak', function () {
+//     return view('kontak');
+// });
 // Route::get('login', function () {
 //     return view('login');
 // });
-Route::get('dashboard', function () {
-    return view('/admin/pages/dashboard');
-})->name('dashboard');
-Route::get('dashboard/lacak', function () {
-    return view('/admin/pages/lacak');
-});
-Route::get('dashboard/lacak/form_lacak', function () {
-    return view('/admin/pages/form_lacak');
-});
+// Route::get('dashboard/lacak', function () {
+//     return view('/admin/pages/lacak');
+// });
+// Route::get('dashboard/lacak/form_lacak', function () {
+//     return view('/admin/pages/form_lacak');
+// });
 // Route::get('dashboard/jadwal', function () {
 //     return view('/admin/pages/jadwal');
 // });

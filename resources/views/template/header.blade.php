@@ -39,23 +39,23 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('about') }}">Tentang TAyo</a>
+                            <a class="nav-link" href="{{ url('tentang') }}">Tentang TAyo</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('artists') }}">Informasi</a>
+                            <a class="nav-link" href="{{ url('info') }}">Informasi</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('schedule') }}">Kalender</a>
+                            <a class="nav-link" href="{{ url('kalender') }}">Kalender</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('pricing') }}">Materi</a>
+                            <a class="nav-link" href="{{ url('materi') }}">Materi</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('contact') }}">Kontak</a>
+                            <a class="nav-link" href="{{ url('kontak') }}">Kontak</a>
                         </li>
                     </ul>
 

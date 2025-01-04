@@ -124,8 +124,8 @@ class MateriController extends Controller
         // Update data
         $materi->topik = $request->topik;
         $materi->deskripsi = $request->deskripsi;
-        $materi->file = $request->file;
-        $materi->video = $request->video;
+        $materi->file = $fileName;
+        $materi->video = $videoName;
 
         // Simpan perubahan
         $materi->save();

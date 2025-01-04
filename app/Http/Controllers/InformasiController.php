@@ -94,6 +94,7 @@ class InformasiController extends Controller
             }
 
             $imageName = time() . '.' . $request->image->extension();
+            // dd($imageName);
             $request->image->move(public_path('images'), $imageName);
         } else {
             $imageName = $info->image;
@@ -104,7 +105,7 @@ class InformasiController extends Controller
         $info->tanggal = $request->tanggal;
         $info->htm = $request->htm;
         $info->lokasi = $request->lokasi;
-        $info->image = $request->image;
+        $info->image = $imageName;
 
         // Simpan perubahan
         $info->save();
