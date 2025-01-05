@@ -31,7 +31,7 @@
                         $id = 1; // Mulai dari 1
                     @endphp
                     @foreach ($materi as $mtr)
-                        <div class="col-lg-6 col-12">
+                        <div class="col-lg-6 col-12 mb-3">
                             <div class="pricing-thumb">
                                 <div class="d-flex">
                                     <div>

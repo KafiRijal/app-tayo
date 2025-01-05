@@ -7,16 +7,15 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
                 <div class="col-10">
-                    <h4 class="fw-bold py-3 mb-4">Informasi</h4>
+                    <h4 class="fw-bold py-3 mb-4">Informasi Webinar & Workshop</h4>
                 </div>
-                <div class="col-2 py-2">
+            </div>
+            <div class="card">
+                <div class="text-end card-header">
                     <a href="{{ url('informasi/tambah_info') }}" type="button" class="btn btn-primary">
                         <span class="tf-icons bx bx-plus"></span>&nbsp; Tambah
                     </a>
                 </div>
-            </div>
-            <div class="card">
-                <h5 class="card-header">Webinar & Workshop</h5>
                 <div class="table-responsive text-nowrap m-3">
                     <table id="infotable" class="table table-bordered table-striped">
                         <thead>

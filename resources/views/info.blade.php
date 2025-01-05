@@ -21,14 +21,14 @@
 
     <section class="artists-section section-padding" id="section_3">
         <div class="container">
+            <div class="col-12 text-center">
+                <h2 class="mb-4">Informasi</h1>
+            </div>
             <div class="row justify-content-center">
 
-                <div class="col-12 text-center">
-                    <h2 class="mb-4">Informasi</h1>
-                </div>
                 @if (!empty($info))
                     @foreach ($info as $inf)
-                        <div class="col-lg-5 col">
+                        <div class="col-md-6">
                             <div class="artists-thumb">
                                 <div class="artists-image-wrap">
                                     <img src="{{ asset('images') . '/' . $inf->image }}" class="artists-image img-fluid">

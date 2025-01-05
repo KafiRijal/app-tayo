@@ -8,11 +8,6 @@
                 <div class="col-10">
                     <h4 class="fw-bold py-3 mb-4">Lacak & Daftar TA</h4>
                 </div>
-                <div class="col-2 py-2">
-                    <a href="{{ url('lacak/tambah_lacak') }}" type="button" class="btn btn-primary">
-                        <span class="tf-icons bx bx-plus"></span>&nbsp; Tambah
-                    </a>
-                </div>
             </div>
             <div class="card mb-4">
                 <h5 class="card-header">Bar Kemajuan</h5>
@@ -29,7 +24,11 @@
 
             </div>
             <div class="card mb-4">
-                <h5 class="card-header">Daftar Tugas</h5>
+                <div class="text-end card-header">
+                    <a href="{{ url('lacak/tambah_lacak') }}" type="button" class="btn btn-primary">
+                        <span class="tf-icons bx bx-plus"></span>&nbsp; Tambah
+                    </a>
+                </div>
                 <div class="table-responsive text-nowrap m-3">
                     <table id="lacaktable" class="table table-bordered table-striped">
                         <thead>
