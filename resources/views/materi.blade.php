@@ -53,18 +53,6 @@
                                             href="{{ asset('videos') . '/' . $mtr->video }}">Video
                                             Materi</a></li>
                                 </ul>
-
-                                <a class="link-fx-1 color-contrast-higher mt-4" href="ticket.html">
-                                    <span>Lihat Materi</span>
-                                    <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
-                                        <g fill="none" stroke="currentColor" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <circle cx="16" cy="16" r="15.5"></circle>
-                                            <line x1="10" y1="18" x2="16" y2="12"></line>
-                                            <line x1="16" y1="12" x2="22" y2="18"></line>
-                                        </g>
-                                    </svg>
-                                </a>
                             </div>
                         </div>
                     @endforeach

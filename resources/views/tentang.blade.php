@@ -22,7 +22,7 @@
     <section class="about-section section-padding" id="section_2">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-12">
+                <div class="col-lg-6 col-12 mb-4">
                     <div class="about-text-wrap">
                         <img src="{{ asset('assets/images/logo-tayo2.jpeg') }}" class="about-image img-fluid">
                     </div>

@@ -10,9 +10,11 @@
             </div>
             <div class="card">
                 <div class="text-end card-header">
-                    <a href="{{ url('jadwal/tambah_jadwal') }}" type="button" class="btn btn-primary">
-                        <span class="tf-icons bx bx-plus"></span>&nbsp; Tambah
-                    </a>
+                    @if (Auth::user()->role->id == 2)
+                        <a href="{{ url('jadwal/tambah_jadwal') }}" type="button" class="btn btn-primary">
+                            <span class="tf-icons bx bx-plus"></span>&nbsp; Tambah
+                        </a>
+                    @endif
                 </div>
                 <div class="table-responsive text-nowrap m-3">
                     <table id="jadwaltable" class="table table-bordered table-striped">
